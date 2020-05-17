@@ -1,0 +1,9 @@
+mixin reqRegForm()
+	form.form(action='/verify' method='POST')
+		label(for='name') Name:
+		input(type='text' name='name' )
+		label(for='voter_id_number') Voter ID Number:
+		input(type='text' name='voter_id_number' )
+
+		input(type='submit' class='button' value='Request Registration')
+

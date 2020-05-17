@@ -9,23 +9,24 @@ const tweetController = require('../controllers/tweetController');
 // Index page
 router.get('/', appController.indexPage);
 
-// Single tweet page 
+// Single tweet page
 router.get('/tweet/:id', tweetController.singleTweetPage);
 
 // API
 ////////////////////////////////
-router.post('/api/tweets/:id/heart', userController.heartTweet)
+router.post('/api/tweets/:id/heart', userController.heartTweet);
 
 // Registration page
 router.get('/register', userController.registerPage);
 
 // Registration POST request
-router.post('/register',
-	userController.verifyRegister,
-	userController.checkUserExists,
-	userController.registerUser,
-	authController.login
-)
+router.post(
+  '/register',
+  userController.verifyRegister,
+  userController.checkUserExists,
+  userController.registerUser,
+  authController.login
+);
 
 // Login POST action
 router.post('/login', authController.login);
@@ -33,36 +34,45 @@ router.post('/login', authController.login);
 // Logout route
 router.get('/logout', authController.logout);
 
-
 // Account page
-router.get('/account',
- 	authController.isLoggedIn,
-	userController.accountPage);
+router.get('/account', authController.isLoggedIn, userController.accountPage);
 
-router.post('/account',
-	userController.upload,
-	userController.resize,
-	userController.accountUpdate);
+// Form page
+router.get('/form', userController.formPage);
+
+// VoterID marriage verification page
+router.get('/verify', userController.verifyPage);
+
+// Request registration page
+router.get('/request', userController.requestRegPage);
+
+router.post(
+  '/account',
+  userController.upload,
+  userController.resize,
+  userController.accountUpdate
+);
 
 // Uploading a profile image
-router.post('/upload',
-	userController.upload,
-	userController.resize,
-	userController.accountUpdate);
+router.post(
+  '/upload',
+  userController.upload,
+  userController.resize,
+  userController.accountUpdate
+);
 
 // Tweet Specific routes
 ///////////////////////////////
 router.post('/tweet', tweetController.postTweet);
 
-router.get('/delete/:id',
-	authController.isLoggedIn,
-	tweetController.deleteTweet);
+router.get(
+  '/delete/:id',
+  authController.isLoggedIn,
+  tweetController.deleteTweet
+);
 
-	// Profile Page at the end because :username
-	router.get('/:username', userController.profilePage);
-
-
-
+// Profile Page at the end because :username
+router.get('/:username', userController.profilePage);
 
 // Exporting the module
 module.exports = router;
