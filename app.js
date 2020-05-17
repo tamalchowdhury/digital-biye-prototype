@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 // Setting up the routes
 app.use('/', routes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // Starting the server
 app.listen(PORT, () =>
