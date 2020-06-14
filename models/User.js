@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Invalid email'],
   },
+
+  // General information
+  address_of_marriage: String,
+
   // Husband information
   husband_name: String,
   husband_age: Number,

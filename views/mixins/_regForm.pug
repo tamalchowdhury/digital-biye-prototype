@@ -1,12 +1,12 @@
 mixin regForm()
 	form.form(action='/register' method='POST')
 		
-		label(for='username') Choose a Username:
+		label(for='username') ইউজারনেম:
 		input(type='text' name='username' )
-		label(for='email') Enter your email:
+		label(for='email') ইমেইল:
 		input(type='email' name='email')
-		label(for='password') Set a password:
+		label(for='password') পাসওয়ার্ড:
 		input(type='password' name='password' )
-		label(for='password-confirm') Re-enter your password:
+		label(for='password-confirm') পাসওয়ার্ড আরেকবার দিন:
 		input(type='password' name='password-confirm' )
-		input(type='submit' class='button' value='Create an Account')
+		input(type='submit' class='button' value='একাউন্ট তৈরী করুন')
