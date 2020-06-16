@@ -5,9 +5,44 @@ const appController = require('../controllers/appController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const tweetController = require('../controllers/tweetController');
+const verificationService = require('../services/verification');
 
 // Index page
 router.get('/', appController.indexPage);
+
+// Dashboard page for the Kazi to look and create marriage
+router.get('/dashboard', appController.dashboard);
+
+// STEP 1 VoterID marriage verification page,
+router.get('/verify', appController.verifyPage);
+
+router.post('/verify', async function (req, res) {
+  let {
+    husband_name,
+    husband_document_type,
+    husband_document_number,
+    wife_name,
+    wife_document_type,
+    wife_document_number,
+  } = req.body;
+
+  try {
+    let husbandAge = await verificationService.mockVerify(
+      husband_document_type,
+      husband_document_number
+    );
+    let wifeAge = await verificationService.mockVerify(
+      wife_document_type,
+      wife_document_number
+    );
+
+    res.send(
+      `Husband age is ${husbandAge} ${husband_document_type}, and wife age is ${wifeAge} ${wife_document_type}`
+    );
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 // Single tweet page
 router.get('/tweet/:id', tweetController.singleTweetPage);
@@ -39,9 +74,6 @@ router.get('/account', authController.isLoggedIn, userController.accountPage);
 
 // Form page
 router.get('/form', userController.formPage);
-
-// VoterID marriage verification page
-router.get('/verify', userController.verifyPage);
 
 // Request registration page
 router.get('/request', userController.requestRegPage);

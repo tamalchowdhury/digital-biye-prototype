@@ -7,6 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const expressValidator = require('express-validator');
 const routes = require('./routes');
+const variables = require('./helpers/variables');
 require('./handlers/passport');
 
 // Dot Env
@@ -46,6 +47,7 @@ app.use(expressValidator());
 
 // Locals
 app.use((req, res, next) => {
+  res.locals.variables = variables;
   res.locals.user = req.user || null;
   next();
 });

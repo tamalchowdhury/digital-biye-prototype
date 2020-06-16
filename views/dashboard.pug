@@ -1,0 +1,11 @@
+extends layout 
+include mixins/_tweetForm
+include mixins/_tweetCard
+block content
+  .single_wrap
+    h1= variables.ADD_NEW_TITLE
+    button= variables.ADD_NEW_BUTTON_TEXT
+    if user
+      p Hello user
+    
+

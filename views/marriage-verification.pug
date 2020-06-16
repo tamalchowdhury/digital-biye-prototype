@@ -3,4 +3,16 @@ include mixins/_verifyForm
 block content 
 	.single_wrap
 		h1 ১ম ধাপ (বয়স এবং বিবাহ ভেরিফিকেশন)
-		+verifyForm()
+		form.form(action='/verify' method='POST')
+			label(for='name') Name:
+			input(type='text' name='name' )
+			label(for='voter_id_number') Voter ID Number:
+			input(type='text' name='voter_id_number' )
+			p যেকোন একটি দিয়ে বর কনের বয়স যাচাই করুন, বরের বয়স সর্বনিম্ন ২১ এবং কনের বয়স ১৮ হতে হবে 
+
+			p বরের ভোটার আইডি নংঃ অথবা এস.এস.সি. সমমান সার্টিফিকেট নাম্বার অথবা জন্ম নিবন্ধন নাম্বার দিন
+
+			p কনের ভোটার আইডি নংঃ অথবা এস.এস.সি. সমমান সার্টিফিকেট নাম্বার অথবা জন্ম নিবন্ধন নাম্বার দিন
+
+			input(type='submit' class='button' value='ভেরিফিকেশন করুন')
+

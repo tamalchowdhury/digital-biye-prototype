@@ -1,0 +1,37 @@
+extends layout
+include mixins/_verifyForm
+block content 
+	.single_wrap
+		h1= variables.VERIFICATION_PAGE_TITLE
+		p বরের বয়স সর্বনিম্ন ২১ এবং কনের বয়স ১৮ হতে হবে 
+		form.form(action='/verify' method='POST')
+			label(for='name') বরের নামঃ
+			input(type='text' name='husband_name' )
+			select(name="husband_document_type")
+				option(value="voter_id" selected=true) ভোটার আইডি নাম্বার
+				option(value="ssc_cert" ) SSC সনদের নাম্বার
+				option(value="birth_cert" ) জন্ম নিবন্ধনের নাম্বার
+			br
+			label(for='husband_document_number') নাম্বার(ইংরেজীতে)
+			input(type='text' name='husband_document_number' )
+
+
+
+			label(for='name') কনের নামঃ
+			input(type='text' name='wife_name' )
+			select(name="wife_document_type")
+				option(value="voter_id" selected=true) ভোটার আইডি নাম্বার
+				option(value="ssc_cert" ) SSC সনদের নাম্বার
+				option(value="birth_cert" ) জন্ম নিবন্ধনের নাম্বার
+			br
+			label(for='wife_document_number') নাম্বার(ইংরেজীতে)
+			input(type='text' name='wife_document_number' )
+
+			p যেকোন একটি দিয়ে বর কনের বয়স যাচাই করুন, বরের বয়স সর্বনিম্ন ২১ এবং কনের বয়স ১৮ হতে হবে 
+
+			p বরের ভোটার আইডি নংঃ অথবা এস.এস.সি. সমমান সার্টিফিকেট নাম্বার অথবা জন্ম নিবন্ধন নাম্বার দিন
+
+			p কনের ভোটার আইডি নংঃ অথবা এস.এস.সি. সমমান সার্টিফিকেট নাম্বার অথবা জন্ম নিবন্ধন নাম্বার দিন
+
+			input(type='submit' class='button' value='ভেরিফিকেশন করুন')
+

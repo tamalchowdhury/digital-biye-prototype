@@ -7,13 +7,13 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		link(rel='stylesheet' href='/style.css')
-		title ডিজিটাল বিয়ে
+		title= variables.SITE_NAME
 	body 
 		.header
 			.wrapper
 				#logo
 					h1.site_title
-						a(href='/') ডিজিটাল বিয়ে
+						a(href='/')= variables.SITE_NAME
 				#navigation
 					if user 
 						//- span hello #{user.username} 
@@ -26,7 +26,7 @@ html(lang="en")
 				block content
 		.footer
 			p
-				small ডিজিটাল বিয়ে 
+				small= variables.SITE_NAME
 					a(href='https://tamalweb.com' target='_blank') TamalWeb
 			
 		
