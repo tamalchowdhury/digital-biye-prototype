@@ -44,7 +44,7 @@ exports.accountPage = async (req, res) => {
 
 // Getting the forms page
 exports.formPage = async (req, res) => {
-  res.render('form', { user: { name: 'Samsu' } });
+  res.render('marriage_form', { marriage: {}, user: { name: 'Samsu' } });
 };
 
 // Get the verify page

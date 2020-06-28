@@ -5,85 +5,132 @@ block content
 		form.form(action='/form' method='POST' enctype='multipart/form-data')
 			div 
 				p ১/ ওয়ার্ড, শহর, ইউনিয়ন,তহসিল,থানা ও জেলার নাম যেখানে বিবাহ কার্য নিস্পন্ন হইয়াছেঃ
-				textarea(name='address_of_marriage' rows='4' cols='50' maxlength='140')= user.bio
+				textarea(name='address_of_marriage' rows='4' cols='50' maxlength='140')= marriage.bio
 				p ২/নিজ নিজ বাসস্থানসহ বর ও তাহার পিতা এবং মাতার নামঃ
 				label(for='husband_name') বরের নামঃ 
+				input(type='text' name='husband_name' value=marriage.husband_name)
 				label(for='husband_address') বরের ঠিকানাঃ 
-				textarea(name='husband_address' rows='4' cols='50' maxlength='140')= user.bio
+				textarea(name='husband_address' rows='4' cols='50' maxlength='140')= marriage.bio
 				label(for='husband_fathers_name') বরের বাবার নামঃ
-				input(type='text' name='husband_fathers_name' value=user.name)
+				input(type='text' name='husband_fathers_name' value=marriage.name)
 				label(for='husband_mothers_name') বরের মাতার নামঃ
-				input(type='text' name='husband_mothers_name' value=user.name)
+				input(type='text' name='husband_mothers_name' value=marriage.name)
 				p ৩/বরের ভোটার আইডি নংঃ
-				input(type='text' name='husband_votter_id_number' value=user.name)
+				input(type='text' name='husband_document_number' value=marriage.husband_document_number disabled)
 				p ২/নিজ নিজ বাসস্থানসহ কন্যা ও তাহার পিতা এবং মাতার নামঃ
 				label(for='wife_name') কন্যার নামঃ 
+				input(type='text' name='wife_name' value=marriage.wife_name)
 				label(for='wife_address') কন্যার ঠিকানাঃ 
-				textarea(name='wife_address' rows='4' cols='50' maxlength='140')= user.bio
+				textarea(name='wife_address' rows='4' cols='50' maxlength='140')= marriage.bio
 				label(for='wife_fathers_name') কন্যার বাবার নামঃ
-				input(type='text' name='wife_fathers_name' value=user.name)
+				input(type='text' name='wife_fathers_name' value=marriage.name)
 				label(for='wife_mothers_name') কন্যার মাতার নামঃ
-				input(type='text' name='wife_mothers_name' value=user.name)
+				input(type='text' name='wife_mothers_name' value=marriage.name)
 				p ৩/কন্যার ভোটার আইডি নংঃ
-				input(type='text' name='wife_votter_id_number' value=user.name)
+				input(type='text' name='wife_document_number' value=marriage.wife_document_number disabled)
 				p ৬/ কন্যা কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
-				p ৭/বর কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ 
+				label(for="lawers_name") উকিলের নামঃ 
+				input(type="text" name="lawers_name" value=marriage.name) 
+				label(for="address_of_wife") তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+				textarea(name="address_of_wife", cols="50", rows="4")= marriage.bio		
+				p ৭/বর কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+				label(for="husband_lawer") উকিলের নামঃ
+				input(type="text" name="husband_lawer" value=marriage.name)
+				label(for="address_of_husband") তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+				textarea(name="address_of_husband", cols="50", rows="4")= marriage.bio
 				p ৮/বিবাহের স্বাক্ষীদের নাম,তাহাদের পিতা এবং মাতার নাম ও বাসস্থানের নামঃ 
 				p -ক-
+				label(for="withness_name_ka") বিবাহের স্বাক্ষীর নাম:
+				input(type="text" name="withness_name_ka" value=marriage.name)
+				label(for="withness_name_ka_father") পিতা নাম:
+				input(type="text" name="withness_name_ka_father" value=marriage.name)
+				label(for="withness_name_ka_mother") মাতার নাম:
+				input(type="text" name="withness_name_ka_mother" value=marriage.name) 
+				hr
 				p -খ- 
+				label(for="withness_name_kha") বিবাহের স্বাক্ষীর নাম:
+				input(type="text" name="withness_name_kha" value=marriage.name)
+				label(for="withness_name_kha_father") পিতা নাম:
+				input(type="text" name="withness_name_kha_father" value=marriage.name)
+				label(for="withness_name_kha_mother") মাতার নাম:
+				input(type="text" name="withness_name_kha_mother" value=marriage.name) 
 				p ৯/ যে তারিখে বিবাহের কথাবার্তা ঠিক হইয়াছিল সেই তারিখ ?
+				input(type="date" name="the_date_of_fixing_marrage")
 				p ১০/ দেনমোহরের পরিমানঃ
+				input(type="number" name="denmohar_amount")
 				p ১১/ দেন মোহরের কি পরিমান মুয়াজ্জল এবং কি পরিমান ম'অজ্জলঃ
+				label(for="muyajjol") মুয়াজ্জল:
+				input(type="text" name="muyajjol" value=marriage.name)
+				label(for="M_amojjol") ম'অজ্জলঃ
+				input(type="text" name="M_amojjol" value=marriage.name)
 				p 12/বিবাহের সময় দেন মোহরের কোন অংশ পরিশোধ করা হইয়াছে কিনা? যদি হইয়া থাকে তবে উহার পরিমান কত?
+				label(for="denmohor_done_or_not") বিবাহের সময় দেন মোহরের কোন অংশ পরিশোধ করা হইয়াছে কিনা?
+				input(type="text" name="denmohor_done_or_not")
+				label(for="amount_of_denmohor_paid") পরিমান:
+				input(type="number" name="amount_of_denmohor_paid")
 				p ১৩/বিশেষ বিবরণ ও পক্ষগনের মধ্যে চুক্তিসূত্রে  নির্নীত মুল্যসহ কোন সম্পত্তি  সম্পূর্ণ দেন মোহর বা উহার অংশ p বিশেষের পরিবর্তে প্রদত্ত হইয়াছে কি নাঃ
+				textarea(name="dealing", cols="50", rows="4")= marriage.bio
 				p ১৪/ বিশেষ  শর্তাদি থাকিলে তাহাঃ
+				textarea(name="special_deal", cols="50", rows="4")= marriage.bio
 				p ১৫/স্বামী স্ত্রীকে তালাক প্রদানের ক্ষমতা অর্পন করিয়াছে কিনা? করিয়া থাকিলে কি কি শর্তে?
+				textarea(name="devorce_from_husband", cols="50", rows="4")= marriage.bio
 				p ১৬/স্বামীর তালাক প্রদানের অধিকার কোন প্রকারে খর্ব হইয়াছে কিনা?
+				textarea(name="devorce_from_wife", cols="50", rows="4")= marriage.bio
 				p ১৭/ বিবাহের সময় দেন মোহর,খোরপোষ ইত্যাদি সম্পর্কে কোন দলিল করা হইয়াছে কিনা? যদি হইয়া থাকে উহার সংক্ষিপ্ত  বিবরণঃ
-				p ১৮/ যে ব্যাক্তির দ্বারা বিবাহ পড়ান হইয়াছে তাহার নাম ও তাহার পিতা এবং মাতার নামঃ 
+				textarea(name="denmohors_papers", cols="50", rows="4")= marriage.bio
+				p ১৮/ যে ব্যাক্তির দ্বারা বিবাহ পড়ান হইয়াছে তাহার নাম ও তাহার পিতা এবং মাতার নামঃ
+				label(for="kazis_name") কাজির নাম : 
+				input(type="text" name="kazis_name" value=marriage.name)
+				label(for="kazis_mother_name") পিতা নামঃ
+				input(type="text" name="kazis_mother_name" value=marriage.name)
 				p ১৯/ বিবাহ রেজিস্ট্রী করার তারিখঃ 
+				input(type="date")
 				p ২০/পরিশোধিত রেজিস্ট্রী ফিস..../= টাকা (কথায়---------টাকা)
+				label(for="register_fee_number") পরিশোধিত রেজিস্ট্রী ফিস সংখ্যা:
+				input(type="number" name="register_fee_number")
+				label(for="register_fee_text") পরিশোধিত রেজিস্ট্রী ফিস কথায়:
+				input(type="text" name="register_fee_text") 
 
 			h3 বরের তথ্যসমূহ
 			label(for='husband_name') বরের নামঃ 
-			input(type='text' name='husband_name' value=user.name)
+			input(type='text' name='husband_name' value=marriage.husband_name)
 			label(for='husband_age') Husband's Age: 
-			input(type='text' name='husband_age' value=user.name)
+			input(type='text' name='husband_age' value=marriage.husband_age disabled)
 			label(for='husband_date_of_birth') Husband's Date of Birth: 
-			input(type='text' name='husband_date_of_birth' value=user.name)
+			input(type='text' name='husband_date_of_birth' value=marriage.husband_date_of_birth disabled)
 			label(for='husband_address') Husband's Address: 
-			textarea(name='husband_address' rows='4' cols='50' maxlength='140')= user.bio
+			textarea(name='husband_address' rows='4' cols='50' maxlength='140')= marriage.bio
 			label(for='husband_fathers_name') Husband's Father's Name: 
-			input(type='text' name='husband_fathers_name' value=user.name)
+			input(type='text' name='husband_fathers_name' value=marriage.name)
 			label(for='husband_mothers_name') Husband's Mother's Name: 
-			input(type='text' name='husband_mothers_name' value=user.name)
+			input(type='text' name='husband_mothers_name' value=marriage.name)
 			label(for='husband_votter_id_number') Husband's Voter ID Number: 
-			input(type='text' name='husband_votter_id_number' value=user.name)
+			input(type='text' name='husband_votter_id_number' value=marriage.name)
 			//- BREAK
 			hr
 			h3 Wife's Information
 			label(for='wife_name') Wife's Name: 
-			input(type='text' name='wife_name' value=user.name)
+			input(type='text' name='wife_name' value=marriage.wife_name)
 			label(for='wife_age') Wife's Age: 
-			input(type='text' name='wife_age' value=user.name)
+			input(type='text' name='wife_age' value=marriage.wife_age disabled)
 			label(for='wife_date_of_birth') Wife's Date of Birth: 
-			input(type='text' name='wife_date_of_birth' value=user.name)
+			input(type='text' name='wife_date_of_birth' value=marriage.wife_date_of_birth disabled)
 			label(for='wife_address') Wife's Address: 
-			textarea(name='wife_address' rows='4' cols='50' maxlength='140')= user.bio
+			textarea(name='wife_address' rows='4' cols='50' maxlength='140')= marriage.bio
 			label(for='wife_fathers_name') Wife's Father's Name: 
-			input(type='text' name='wife_fathers_name' value=user.name)
+			input(type='text' name='wife_fathers_name' value=marriage.name)
 			label(for='wife_mothers_name') Wife's Mother's Name: 
-			input(type='text' name='wife_mothers_name' value=user.name)
+			input(type='text' name='wife_mothers_name' value=marriage.name)
 			label(for='wife_votter_id_number') Wife's Voter ID Number: 
-			input(type='text' name='wife_votter_id_number' value=user.name)
+			input(type='text' name='wife_votter_id_number' value=marriage.name)
 			hr
 			h3 Account Related Information
 			label(for='email') Email: 
-			input(type='email' name='email' value=user.email)
+			input(type='email' name='email' value=marriage.email)
 			label(for='website') Website: 
-			input(type='url' name='website' placeholder='http://' value=user.website)
+			input(type='url' name='website' placeholder='http://' value=marriage.website)
 			h3 Upload your profile picture:
 			input(type='file' name='avatar' accepts='image/png, image/jpeg')
 			h3 Write your bio: 
-			textarea(name='bio' rows='4' cols='50' maxlength='140')= user.bio
+			textarea(name='bio' rows='4' cols='50' maxlength='140')= marriage.bio
 			input(type='submit' class='button' value='Update')

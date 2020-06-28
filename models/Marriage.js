@@ -3,18 +3,24 @@ const validator = require('validator');
 
 const marriageSchema = new mongoose.Schema({
   // Start and end time for reference
-  process_start_time: Date,
+  process_start_time: {
+    type: Date,
+    default: Date.now(),
+  },
   process_end_time: Date,
-  // Marriage status, true = success, false = pending
-  marriage_success: Boolean,
+  // Marriage status, could be: SUCCESS, FAILED, PENDING etc
+  marriage_status: {
+    type: String,
+    default: 'PENDING',
+  },
 
   // Step 1 information
-  husband_voter_id_number: String,
-  wife_voter_id_number: String,
-
   // what type of document is this? voter_ID, school certificate, or birth certificat?
   husband_document_type: String,
   wife_document_type: String,
+
+  husband_document_number: String,
+  wife_document_number: String,
 
   // Check step 1 validity: don't let them pass without this validity:
   husband_age_verified: Boolean,
