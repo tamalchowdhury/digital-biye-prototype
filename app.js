@@ -17,7 +17,7 @@ require('dotenv').config({ path: 'variables.env' });
 const LOCAL_DB = process.env.DATABASE;
 const REMOTE_DB = require('./helpers/temp');
 
-mongoose.connect(REMOTE_DB);
+mongoose.connect(LOCAL_DB);
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', (err) => {
   console.log('We have an error with the database: ' + err);

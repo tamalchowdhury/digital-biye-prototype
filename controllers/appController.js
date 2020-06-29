@@ -1,6 +1,8 @@
 const Tweet = require('../models/Tweet');
 const moment = require('moment');
 
+const marriageService = require('../services/marriage');
+
 // The default controller for this app
 // The home page
 exports.indexPage = async (req, res) => {
@@ -19,7 +21,8 @@ exports.indexPage = async (req, res) => {
 // Dashboard page
 exports.dashboard = async function (req, res) {
   try {
-    res.render('dashboard');
+    const marriages = await marriageService.getAll();
+    res.render('dashboard', { marriages });
   } catch (e) {
     console.log(e);
     res.redirect('/error');

@@ -9,7 +9,8 @@ const verificationService = require('../services/verification');
 const marriageService = require('../services/marriage');
 
 // Index page
-router.get('/', appController.indexPage);
+// Make sure user is logged in
+router.get('/', appController.dashboard);
 
 // Dashboard page for the Kazi to look and create marriage
 router.get('/dashboard', appController.dashboard);
@@ -97,6 +98,25 @@ router.get('/account', authController.isLoggedIn, userController.accountPage);
 
 // Form page
 router.get('/form', userController.formPage);
+
+// When editing this form page from the dashboard
+// Make sure it is secured
+router.get('/form/:id', async function (req, res) {
+  const marriage = await marriageService.getOne(req.params.id);
+  res.render('marriage_form', { marriage });
+});
+
+// Update the form and go to the next stage
+router.post('/form', async function (req, res) {
+  try {
+    const updatedMarriage = await marriageService.updateOne(req.body);
+    res.send(updatedMarriage);
+  } catch (error) {
+    res.render('info_page', { info: error });
+  }
+
+  // marriageService.updateOne();
+});
 
 // Request registration page
 router.get('/request', userController.requestRegPage);
