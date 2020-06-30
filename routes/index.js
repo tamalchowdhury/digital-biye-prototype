@@ -18,6 +18,7 @@ router.get('/dashboard', appController.dashboard);
 // STEP 1 VoterID marriage verification page,
 router.get('/verify', appController.verifyPage);
 
+// This part will get the user to step 2
 router.post('/verify', async function (req, res) {
   let {
     husband_name,
@@ -54,15 +55,43 @@ router.post('/verify', async function (req, res) {
       data.husband_age_verified = true;
       data.wife_age_verified = true;
       let marriage = await marriageService.createNew(data);
-      res.render('marriage_form', {
-        marriage: marriage,
-        user: { name: 'Samsu', bio: 'This is the BIO field' },
+      res.render('marriage_type', {
+        marriage,
       });
     } else {
       res.render('info_page', {
         info: `Husband age is ${husband.age} ${husband_document_type}, and wife age is ${wife.age} ${wife_document_type}. Husband should be at least 21 and wife should be at least 18 years old`,
       });
     }
+  } catch (error) {
+    res.render('info_page', { info: error });
+  }
+});
+
+// STEP 2: Marriage type
+
+// Should disable it
+router.get('/marriage-type', async function (req, res) {
+  res.render('marriage_type');
+});
+
+// This will take the user to step 3, form input
+router.post('/marriage-type', async function (req, res) {
+  let data = { ...req.body };
+
+  try {
+    const marriage = await marriageService.updateOne(data);
+    res.render('marriage_form', { marriage });
+  } catch (error) {
+    res.render('info_page', { info: error });
+  }
+});
+
+// STEP 4: Register and generate the form
+router.get('/register-marriage/:id', async function (req, res) {
+  try {
+    const marriage = await marriageService.getOne(req.params.id);
+    res.render('register_marriage', { marriage });
   } catch (error) {
     res.render('info_page', { info: error });
   }
@@ -109,8 +138,8 @@ router.get('/form/:id', async function (req, res) {
 // Update the form and go to the next stage
 router.post('/form', async function (req, res) {
   try {
-    const updatedMarriage = await marriageService.updateOne(req.body);
-    res.send(updatedMarriage);
+    const marriage = await marriageService.updateOne(req.body);
+    res.render('marriage_form', { marriage });
   } catch (error) {
     res.render('info_page', { info: error });
   }

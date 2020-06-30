@@ -30,6 +30,34 @@ const marriageSchema = new mongoose.Schema({
   husband_age: Number,
   wife_age: Number,
 
+  // Step 2 Marriage Type
+  // Regular, Many, Widowed, Divorced:
+  // REGULAR, MANY, WIDOWED, DIVORCED
+  husband_marriage_type: {
+    type: String,
+    default: 'REGULAR',
+  },
+  wife_marriage_type: {
+    type: String,
+    default: 'REGULAR',
+  },
+
+  // IF MANY:
+  husband_permission_from_wife: String,
+  wife_permission_from_husband: String,
+
+  husband_chairman_certificate: String,
+  wife_chairman_certificate: String,
+
+  // IF WIDOWED
+  name_of_civil_sergeon: String,
+  husband_death_certificate: String,
+  wife_death_certificate: String,
+
+  // IF DIVORCED
+  husband_divorce_paper: String,
+  wife_divorce_paper: String,
+
   // General information
   address_of_marriage: String,
 

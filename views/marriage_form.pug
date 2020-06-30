@@ -1,7 +1,7 @@
 extends layout
 block content
 	.single_wrap
-		h2 ২য় ধাপ
+		h2 ৩য় ধাপ
 		h3 মুসলিম বিবাহ ও তালাক (নিবন্ধন) বিধিমেলা,২০০৯ এর বিধি ২৮(১) (ক) অনুযায়ী বিবাহ রেজিস্ট্রারী বহি 
 		form.form(action='/form' method='POST')
 			div 
@@ -20,6 +20,15 @@ block content
 				input(type='text' name='husband_mothers_name' value=marriage.husband_mothers_name)
 				p ৩/বরের ভোটার আইডি নংঃ
 				input(type='text' name='husband_document_number' value=marriage.husband_document_number disabled)
+				if marriage.husband_marriage_type == 'MANY'
+					p বহু বিবাহঃ অনুমতি পেয়েছে?
+				else if marriage.husband_marriage_type == 'WIDOWED'
+					p বিপত্নীকঃ মৃত্যু সনদ 
+				else if marriage.husband_marriage_type == 'DIVORCED'
+					p তালাক প্রাপ্তঃ তালাকের কাগজ
+				else
+					p সাধারন
+				hr
 				p ২/নিজ নিজ বাসস্থানসহ কন্যা ও তাহার পিতা এবং মাতার নামঃ
 				label(for='wife_name') কন্যার নামঃ 
 				input(type='text' name='wife_name' value=marriage.wife_name)
@@ -31,6 +40,15 @@ block content
 				input(type='text' name='wife_mothers_name' value=marriage.wife_mothers_name)
 				p ৩/কন্যার ভোটার আইডি নংঃ
 				input(type='text' name='wife_document_number' value=marriage.wife_document_number disabled)
+				if marriage.wife_marriage_type == 'MANY'
+					p বহু বিবাহঃ অনুমতি পেয়েছে?
+				else if marriage.wife_marriage_type == 'WIDOWED'
+					p বিপত্নীকঃ মৃত্যু সনদ 
+				else if marriage.wife_marriage_type == 'DIVORCED'
+					p তালাক প্রাপ্তঃ তালাকের কাগজ
+				else
+					p সাধারন
+				hr
 				p ৬/ কন্যা কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
 				label(for="lawers_name") উকিলের নামঃ 
 				input(type="text" name="lawers_name" value=marriage.name) 
@@ -94,4 +112,8 @@ block content
 				label(for="register_fee_text") পরিশোধিত রেজিস্ট্রী ফিস কথায়:
 				input(type="text" name="register_fee_text") 
 			
-			input(type='submit' class='button' value='Update')
+			input(type='submit' class='button' value='সেভ করে রাখুন')
+
+		form.form(action=`/register-marriage/${marriage._id}` method="GET")
+			input(type='submit' class='button green' value='বিয়ে রেজিস্ট্রেশন করুন')
+

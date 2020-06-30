@@ -1,0 +1,25 @@
+extends layout
+include mixins/_verifyForm
+block content 
+	.single_wrap
+		h1= variables.MARRIAGE_TYPE_PAGE_TITLE
+		p বর কনের বিবাহের ধরন নির্বাচন করুন 
+		form.form(action='/marriage-type' method='POST')
+			label(for='husband_marriage_type') বরের বিবাহের ধরনঃ 
+			select(name="husband_marriage_type")
+				option(value="REGULAR" selected=true) সাধারন
+				option(value="MANY" ) একের অধিক
+				option(value="WIDOWED" ) বিপত্নীক
+				option(value="DIVORCED" ) তালাক প্রাপ্ত
+			br
+			hr
+			label(for='wife_marriage_type') কনের বিবাহের ধরনঃ 
+			select(name="wife_marriage_type")
+				option(value="REGULAR" selected=true) সাধারন
+				option(value="MANY" ) একের অধিক
+				option(value="WIDOWED" ) বিধবা
+				option(value="DIVORCED" ) তালাক প্রাপ্ত
+
+			input(type="hidden" name="_id" value=marriage._id)
+			input(type='submit' class='button' value='পরবর্তি')
+
