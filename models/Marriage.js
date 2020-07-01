@@ -96,6 +96,35 @@ const marriageSchema = new mongoose.Schema({
   date_of_marriage_registration: String,
   paid_registration_fees_number: Number,
   paid_registration_fees_words: String,
+
+  //information about lawers_name
+
+  lawers_name: String,
+  address_of_wife: String,
+  husband_lawer: String,
+  address_of_husband: String,
+  withness_name_ka: String,
+  withness_name_ka_father: String,
+  withness_name_ka_mother: String,
+
+  withness_name_kha: String,
+  withness_name_kha_father: String,
+  withness_name_kha_mother: String,
+
+  the_date_of_fixing_marrage: Date,
+  denmohar_amount: Number,
+
+  muyajjol: String,
+  M_amojjol: String,
+
+  denmohor_done_or_not: String,
+  amount_of_denmohor_paid: String,
+
+  dealing: String,
+  special_deal: String,
+
+  kazis_name: String,
+  kazis_father_name: String,
 });
 
 module.exports = mongoose.model('Marriage', marriageSchema);

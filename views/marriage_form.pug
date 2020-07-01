@@ -1,119 +1,116 @@
 extends layout
 block content
-	.single_wrap
-		h2 ৩য় ধাপ
-		h3 মুসলিম বিবাহ ও তালাক (নিবন্ধন) বিধিমেলা,২০০৯ এর বিধি ২৮(১) (ক) অনুযায়ী বিবাহ রেজিস্ট্রারী বহি 
-		form.form(action='/form' method='POST')
-			div 
-				//- Hidden input field for taking the marriage ID
-				input(type="hidden" name="_id" value=marriage._id)
-				p ১/ ওয়ার্ড, শহর, ইউনিয়ন,তহসিল,থানা ও জেলার নাম যেখানে বিবাহ কার্য নিস্পন্ন হইয়াছেঃ
-				textarea(name='address_of_marriage' rows='4' cols='50' maxlength='140')= marriage.bio
-				p ২/নিজ নিজ বাসস্থানসহ বর ও তাহার পিতা এবং মাতার নামঃ
-				label(for='husband_name') বরের নামঃ 
-				input(type='text' name='husband_name' value=marriage.husband_name)
-				label(for='husband_address') বরের ঠিকানাঃ 
-				textarea(name='husband_address' rows='4' cols='50' maxlength='140')= marriage.bio
-				label(for='husband_fathers_name') বরের বাবার নামঃ
-				input(type='text' name='husband_fathers_name' value=marriage.husband_fathers_name)
-				label(for='husband_mothers_name') বরের মাতার নামঃ
-				input(type='text' name='husband_mothers_name' value=marriage.husband_mothers_name)
-				p ৩/বরের ভোটার আইডি নংঃ
-				input(type='text' name='husband_document_number' value=marriage.husband_document_number disabled)
-				if marriage.husband_marriage_type == 'MANY'
-					p বহু বিবাহঃ অনুমতি পেয়েছে?
-				else if marriage.husband_marriage_type == 'WIDOWED'
-					p বিপত্নীকঃ মৃত্যু সনদ 
-				else if marriage.husband_marriage_type == 'DIVORCED'
-					p তালাক প্রাপ্তঃ তালাকের কাগজ
-				else
-					p সাধারন
-				hr
-				p ২/নিজ নিজ বাসস্থানসহ কন্যা ও তাহার পিতা এবং মাতার নামঃ
-				label(for='wife_name') কন্যার নামঃ 
-				input(type='text' name='wife_name' value=marriage.wife_name)
-				label(for='wife_address') কন্যার ঠিকানাঃ 
-				textarea(name='wife_address' rows='4' cols='50' maxlength='140')= marriage.bio
-				label(for='wife_fathers_name') কন্যার বাবার নামঃ
-				input(type='text' name='wife_fathers_name' value=marriage.wife_fathers_name)
-				label(for='wife_mothers_name') কন্যার মাতার নামঃ
-				input(type='text' name='wife_mothers_name' value=marriage.wife_mothers_name)
-				p ৩/কন্যার ভোটার আইডি নংঃ
-				input(type='text' name='wife_document_number' value=marriage.wife_document_number disabled)
-				if marriage.wife_marriage_type == 'MANY'
-					p বহু বিবাহঃ অনুমতি পেয়েছে?
-				else if marriage.wife_marriage_type == 'WIDOWED'
-					p বিপত্নীকঃ মৃত্যু সনদ 
-				else if marriage.wife_marriage_type == 'DIVORCED'
-					p তালাক প্রাপ্তঃ তালাকের কাগজ
-				else
-					p সাধারন
-				hr
-				p ৬/ কন্যা কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
-				label(for="lawers_name") উকিলের নামঃ 
-				input(type="text" name="lawers_name" value=marriage.name) 
-				label(for="address_of_wife") তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
-				textarea(name="address_of_wife", cols="50", rows="4")= marriage.bio		
-				p ৭/বর কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
-				label(for="husband_lawer") উকিলের নামঃ
-				input(type="text" name="husband_lawer" value=marriage.name)
-				label(for="address_of_husband") তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
-				textarea(name="address_of_husband", cols="50", rows="4")= marriage.bio
-				p ৮/বিবাহের স্বাক্ষীদের নাম,তাহাদের পিতা এবং মাতার নাম ও বাসস্থানের নামঃ 
-				p -ক-
-				label(for="withness_name_ka") বিবাহের স্বাক্ষীর নাম:
-				input(type="text" name="withness_name_ka" value=marriage.name)
-				label(for="withness_name_ka_father") পিতা নাম:
-				input(type="text" name="withness_name_ka_father" value=marriage.name)
-				label(for="withness_name_ka_mother") মাতার নাম:
-				input(type="text" name="withness_name_ka_mother" value=marriage.name) 
-				hr
-				p -খ- 
-				label(for="withness_name_kha") বিবাহের স্বাক্ষীর নাম:
-				input(type="text" name="withness_name_kha" value=marriage.name)
-				label(for="withness_name_kha_father") পিতা নাম:
-				input(type="text" name="withness_name_kha_father" value=marriage.name)
-				label(for="withness_name_kha_mother") মাতার নাম:
-				input(type="text" name="withness_name_kha_mother" value=marriage.name) 
-				p ৯/ যে তারিখে বিবাহের কথাবার্তা ঠিক হইয়াছিল সেই তারিখ ?
-				input(type="date" name="the_date_of_fixing_marrage")
-				p ১০/ দেনমোহরের পরিমানঃ
-				input(type="number" name="denmohar_amount")
-				p ১১/ দেন মোহরের কি পরিমান মুয়াজ্জল এবং কি পরিমান ম'অজ্জলঃ
-				label(for="muyajjol") মুয়াজ্জল:
-				input(type="text" name="muyajjol" value=marriage.name)
-				label(for="M_amojjol") ম'অজ্জলঃ
-				input(type="text" name="M_amojjol" value=marriage.name)
-				p 12/বিবাহের সময় দেন মোহরের কোন অংশ পরিশোধ করা হইয়াছে কিনা? যদি হইয়া থাকে তবে উহার পরিমান কত?
-				label(for="denmohor_done_or_not") বিবাহের সময় দেন মোহরের কোন অংশ পরিশোধ করা হইয়াছে কিনা?
-				input(type="text" name="denmohor_done_or_not")
-				label(for="amount_of_denmohor_paid") পরিমান:
-				input(type="number" name="amount_of_denmohor_paid")
-				p ১৩/বিশেষ বিবরণ ও পক্ষগনের মধ্যে চুক্তিসূত্রে  নির্নীত মুল্যসহ কোন সম্পত্তি  সম্পূর্ণ দেন মোহর বা উহার অংশ p বিশেষের পরিবর্তে প্রদত্ত হইয়াছে কি নাঃ
-				textarea(name="dealing", cols="50", rows="4")= marriage.bio
-				p ১৪/ বিশেষ  শর্তাদি থাকিলে তাহাঃ
-				textarea(name="special_deal", cols="50", rows="4")= marriage.bio
-				p ১৫/স্বামী স্ত্রীকে তালাক প্রদানের ক্ষমতা অর্পন করিয়াছে কিনা? করিয়া থাকিলে কি কি শর্তে?
-				textarea(name="devorce_from_husband", cols="50", rows="4")= marriage.bio
-				p ১৬/স্বামীর তালাক প্রদানের অধিকার কোন প্রকারে খর্ব হইয়াছে কিনা?
-				textarea(name="devorce_from_wife", cols="50", rows="4")= marriage.bio
-				p ১৭/ বিবাহের সময় দেন মোহর,খোরপোষ ইত্যাদি সম্পর্কে কোন দলিল করা হইয়াছে কিনা? যদি হইয়া থাকে উহার সংক্ষিপ্ত  বিবরণঃ
-				textarea(name="denmohors_papers", cols="50", rows="4")= marriage.bio
-				p ১৮/ যে ব্যাক্তির দ্বারা বিবাহ পড়ান হইয়াছে তাহার নাম ও তাহার পিতা এবং মাতার নামঃ
-				label(for="kazis_name") কাজির নাম : 
-				input(type="text" name="kazis_name" value=marriage.name)
-				label(for="kazis_mother_name") পিতা নামঃ
-				input(type="text" name="kazis_mother_name" value=marriage.name)
-				p ১৯/ বিবাহ রেজিস্ট্রী করার তারিখঃ 
-				input(type="date")
-				p ২০/পরিশোধিত রেজিস্ট্রী ফিস..../= টাকা (কথায়---------টাকা)
-				label(for="register_fee_number") পরিশোধিত রেজিস্ট্রী ফিস সংখ্যা:
-				input(type="number" name="register_fee_number")
-				label(for="register_fee_text") পরিশোধিত রেজিস্ট্রী ফিস কথায়:
-				input(type="text" name="register_fee_text") 
-			
-			input(type='submit' class='button' value='সেভ করে রাখুন')
+  .single_wrap
+    h2 ৩য় ধাপ
+    h3 মুসলিম বিবাহ ও তালাক (নিবন্ধন) বিধিমেলা,২০০৯ এর বিধি ২৮(১) (ক) অনুযায়ী বিবাহ রেজিস্ট্রারী বহি
+    form.form(action='/form' method='POST')
+      div
+        //- Hidden input field for taking the marriage ID
+        input(type="hidden" name="_id" value=marriage._id)
+        p ১/ ওয়ার্ড, শহর, ইউনিয়ন,তহসিল,থানা ও জেলার নাম যেখানে বিবাহ কার্য নিস্পন্ন হইয়াছেঃ
+        textarea(name='address_of_marriage' rows='4' cols='50' maxlength='140')= marriage.address_of_marriage
+        p ২/নিজ নিজ বাসস্থানসহ বর ও তাহার পিতা এবং মাতার নামঃ
+        label(for='husband_name') বরের নামঃ
+        input(type='text' name='husband_name' value=marriage.husband_name)
+        label(for='husband_address') বরের ঠিকানাঃ
+        textarea(name='husband_address' rows='4' cols='50' maxlength='140')= marriage.husband_address
+        label(for='husband_fathers_name') বরের বাবার নামঃ
+        input(type='text' name='husband_fathers_name' value=marriage.husband_fathers_name)
+        label(for='husband_mothers_name') বরের মাতার নামঃ
+        input(type='text' name='husband_mothers_name' value=marriage.husband_mothers_name)
+        p ৩/বরের ভোটার আইডি নংঃ
+        input(type='text' name='husband_document_number' value=marriage.husband_document_number disabled)
+        if marriage.husband_marriage_type == 'MANY'
+          p বহু বিবাহঃ অনুমতি পেয়েছে?
+        else if marriage.husband_marriage_type == 'WIDOWED'
+          p বিপত্নীকঃ মৃত্যু সনদ 
+        else if marriage.husband_marriage_type == 'DIVORCED'
+          p তালাক প্রাপ্তঃ তালাকের কাগজ
+        else
+          p সাধারন
+        p ২/নিজ নিজ বাসস্থানসহ কন্যা ও তাহার পিতা এবং মাতার নামঃ
+        label(for='wife_name') কন্যার নামঃ
+        input(type='text' name='wife_name' value=marriage.wife_name)
+        label(for='wife_address') কন্যার ঠিকানাঃ
+        textarea(name='wife_address' rows='4' cols='50' maxlength='140')= marriage.wife_address
+        label(for='wife_fathers_name') কন্যার বাবার নামঃ
+        input(type='text' name='wife_fathers_name' value=marriage.wife_fathers_name)
+        label(for='wife_mothers_name') কন্যার মাতার নামঃ
+        input(type='text' name='wife_mothers_name' value=marriage.wife_mothers_name)
+        p ৩/কন্যার ভোটার আইডি নংঃ
+        input(type='text' name='wife_document_number' value=marriage.wife_document_number disabled)
+        if marriage.wife_marriage_type == 'MANY'
+          p বহু বিবাহঃ অনুমতি পেয়েছে?
+        else if marriage.wife_marriage_type == 'WIDOWED'
+          p বিপত্নীকঃ মৃত্যু সনদ 
+        else if marriage.wife_marriage_type == 'DIVORCED'
+          p তালাক প্রাপ্তঃ তালাকের কাগজ
+        else
+          p সাধারন
+        p ৬/ কন্যা কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+        label(for="lawers_name") উকিলের নামঃ
+        input(type="text" name="lawers_name" value=marriage.lawers_name)
+        label(for="address_of_wife") তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+        textarea(name="address_of_wife", cols="50", rows="4")= marriage.address_of_wife
+        p ৭/বর কর্তৃক উকিল নিযুক্ত হইল ঐ উকিলের নাম এবং তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+        label(for="husband_lawer") উকিলের নামঃ
+        input(type="text" name="husband_lawer" value=marriage.husband_lawer)
+        label(for="address_of_husband") তাহার পিতা ও মাতা সহ বাসস্থালের নাম ও ঠিকানাঃ
+        textarea(name="address_of_husband", cols="50", rows="4")= marriage.address_of_husband
+        p ৮/বিবাহের স্বাক্ষীদের নাম,তাহাদের পিতা এবং মাতার নাম ও বাসস্থানের নামঃ
+        p -ক-
+        label(for="withness_name_ka") বিবাহের স্বাক্ষীর নাম:
+        input(type="text" name="withness_name_ka" value=marriage.withness_name_ka)
+        label(for="withness_name_ka_father") পিতা নাম:
+        input(type="text" name="withness_name_ka_father" value=marriage.withness_name_ka_father)
+        label(for="withness_name_ka_mother") মাতার নাম:
+        input(type="text" name="withness_name_ka_mother" value=marriage.withness_name_ka_mother)
+        hr
+        p -খ-
+        label(for="withness_name_kha") বিবাহের স্বাক্ষীর নাম:
+        input(type="text" name="withness_name_kha" value=marriage.withness_name_kha)
+        label(for="withness_name_kha_father") পিতা নাম:
+        input(type="text" name="withness_name_kha_father" value=marriage.withness_name_kha_father)
+        label(for="withness_name_kha_mother") মাতার নাম:
+        input(type="text" name="withness_name_kha_mother" value=marriage.withness_name_kha_mother)
+        p ৯/ যে তারিখে বিবাহের কথাবার্তা ঠিক হইয়াছিল সেই তারিখ ?
+        input(type="date" name="date_of_marriage_discussion" value=marriage.date_of_marriage_discussion)
+        p ১০/ দেনমোহরের পরিমানঃ
+        input(type="number" name="denmohar_amount" value=marriage.denmohar_amount)
+        p ১১/ দেন মোহরের কি পরিমান মুয়াজ্জল এবং কি পরিমান ম'অজ্জলঃ
+        label(for="muyajjol") মুয়াজ্জল:
+        input(type="text" name="muyajjol" value=marriage.muyajjol)
+        label(for="M_amojjol") ম'অজ্জলঃ
+        input(type="text" name="M_amojjol" value=marriage.M_amojjol)
+        p 12/বিবাহের সময় দেন মোহরের কোন অংশ পরিশোধ করা হইয়াছে কিনা? যদি হইয়া থাকে তবে উহার পরিমান কত?
+        label(for="denmohor_done_or_not") বিবাহের সময় দেন মোহরের কোন অংশ পরিশোধ করা হইয়াছে কিনা?
+        input(type="text" name="denmohor_done_or_not" value=marriage.denmohor_done_or_not)
+        label(for="amount_of_denmohor_paid") পরিমান:
+        input(type="number" name="amount_of_denmohor_paid" value=marriage.amount_of_denmohor_paid)
+        p ১৩/বিশেষ বিবরণ ও পক্ষগনের মধ্যে চুক্তিসূত্রে  নির্নীত মুল্যসহ কোন সম্পত্তি  সম্পূর্ণ দেন মোহর বা উহার অংশ p বিশেষের পরিবর্তে প্রদত্ত হইয়াছে কি নাঃ
+        textarea(name="dealing", cols="50", rows="4")= marriage.dealing
+        p ১৪/ বিশেষ  শর্তাদি থাকিলে তাহাঃ
+        textarea(name="special_deal", cols="50", rows="4")= marriage.special_deal
+        p ১৫/স্বামী স্ত্রীকে তালাক প্রদানের ক্ষমতা অর্পন করিয়াছে কিনা? করিয়া থাকিলে কি কি শর্তে?
+        textarea(name="husbands_right_to_divorce_violated", cols="50", rows="4")= marriage.husbands_right_to_divorce_violated
+        p ১৬/স্বামীর তালাক প্রদানের অধিকার কোন প্রকারে খর্ব হইয়াছে কিনা?
+        textarea(name="wifes_right_to_divorce_violated", cols="50", rows="4")= marriage.wifes_right_to_divorce_violated
+        p ১৭/ বিবাহের সময় দেন মোহর,খোরপোষ ইত্যাদি সম্পর্কে কোন দলিল করা হইয়াছে কিনা? যদি হইয়া থাকে উহার সংক্ষিপ্ত  বিবরণঃ
+        textarea(name="agreement_for_den_mohor_during_marriage", cols="50", rows="4")= marriage.agreement_for_den_mohor_during_marriage
+        p ১৮/ যে ব্যাক্তির দ্বারা বিবাহ পড়ান হইয়াছে তাহার নাম ও তাহার পিতা এবং মাতার নামঃ
+        label(for="kazis_name") কাজির নাম :
+        input(type="text" name="kazis_name" value=marriage.kazis_name)
+        label(for="kazis_father_name") পিতা নামঃ
+        input(type="text" name="kazis_father_name" value=marriage.kazis_father_name)
+        p ১৯/ বিবাহ রেজিস্ট্রী করার তারিখঃ
+        input(type="date" name="date_of_marriage_registration" value=marriage.date_of_marriage_registration)
+        p ২০/পরিশোধিত রেজিস্ট্রী ফিস..../= টাকা (কথায়---------টাকা)
+        label(for="paid_registration_fees_number") পরিশোধিত রেজিস্ট্রী ফিস সংখ্যা:
+        input(type="number" name="paid_registration_fees_number" value=marriage.paid_registration_fees_number)
+        label(for="paid_registration_fees_words") পরিশোধিত রেজিস্ট্রী ফিস কথায়:
+        input(type="text" name="paid_registration_fees_words" value=marriage.paid_registration_fees_words)
 
-		form.form(action=`/register-marriage/${marriage._id}` method="GET")
-			input(type='submit' class='button green' value='বিয়ে রেজিস্ট্রেশন করুন')
+      input(type='submit' class='button' value='সেভ করে রাখুন')
 
+    form.form(action=`/register-marriage/${marriage._id}` method="GET")
+      input(type='submit' class='button green' value='বিয়ে রেজিস্ট্রেশন করুন')
